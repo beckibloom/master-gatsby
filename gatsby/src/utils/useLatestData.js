@@ -23,7 +23,7 @@ export default function useLatestData() {
   const [error, setError] = useState();
   // use a side effect to fetch the data from the graphql endpoint
   useEffect(function () {
-    // when the component loads, fetch the data
+    // when the component loads, fetch the data]
     fetch(process.env.GATSBY_GRAPHQL_ENDPOINT, {
       method: 'POST',
       headers: {

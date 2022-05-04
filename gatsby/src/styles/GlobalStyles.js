@@ -75,6 +75,9 @@ const GlobalStyles = createGlobalStyle`
     max-width: 100%;
   }
 
+  .error {
+    color: var(--red);
+  }
 `;
 
 export default GlobalStyles;

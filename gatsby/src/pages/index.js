@@ -36,7 +36,7 @@ function HotSlices({ hotSlices }) {
 }
 
 export default function HomePage() {
-  const { slicemasters, hotSlices } = useLatestData();
+  const { slicemasters, hotSlices, error } = useLatestData();
   return (
     <>
       <div className="center">
@@ -45,10 +45,13 @@ export default function HomePage() {
         <p>
           <Link to="/beers/">🍺 Beer list</Link>
         </p>
-        <HomePageGrid>
-          <CurrentlySlicing slicemasters={slicemasters} />
-          <HotSlices hotSlices={hotSlices} />
-        </HomePageGrid>
+        {error && <p className="error">{error}</p>}
+        {!error && (
+          <HomePageGrid>
+            <CurrentlySlicing slicemasters={slicemasters} />
+            <HotSlices hotSlices={hotSlices} />
+          </HomePageGrid>
+        )}
       </div>
     </>
   );
