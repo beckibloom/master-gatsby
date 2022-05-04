@@ -20,6 +20,7 @@ export default function useLatestData() {
   const [hotSlices, setHotSlices] = useState();
   // slicemasters
   const [slicemasters, setSlicemasters] = useState();
+  const [error, setError] = useState();
   // use a side effect to fetch the data from the graphql endpoint
   useEffect(function () {
     // when the component loads, fetch the data
@@ -52,10 +53,11 @@ export default function useLatestData() {
         setSlicemasters(res.data.StoreSettings.slicemaster);
       })
       .catch((err) => {
-        console.log(err);
-        console.log('Well shucks');
+        if (err) {
+          setError('Well shucks, something went wrong...');
+        }
       });
   }, []);
 
-  return { hotSlices, slicemasters };
+  return { hotSlices, slicemasters, error };
 }
