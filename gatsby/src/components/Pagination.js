@@ -25,13 +25,18 @@ const PaginationStyles = styled.div`
       color: var(--grey);
     }
   }
+  @media (max-width: 800px) {
+    .word {
+      display: none;
+    }
+    font-size: 1.4rem;
+  }
 `;
 
 export default function Pagination({
   pageSize,
   totalCount,
   currentPage,
-  skip,
   base,
 }) {
   // make some variables
@@ -41,10 +46,15 @@ export default function Pagination({
   const hasNextPage = nextPage <= totalPages;
   const hasPrevPage = prevPage >= 1;
 
+  // deployed site showing error when on page 1 or last page - presumably because the Link is rendering and linking to a page that does not exist?
   return (
     <PaginationStyles>
-      <Link to={`${base}/${prevPage}`} disabled={!hasPrevPage}>
-        &#8592; Prev
+      <Link
+        to={hasPrevPage ? `${base}/${prevPage}` : ''}
+        disabled={!hasPrevPage}
+        title="Previous page"
+      >
+        &#8592; <span className="word">Prev</span>
       </Link>
       {Array.from({ length: totalPages }).map((_, i) => (
         <Link
@@ -55,8 +65,12 @@ export default function Pagination({
           {i + 1}
         </Link>
       ))}
-      <Link to={`${base}/${nextPage}`} disabled={!hasNextPage}>
-        Next &#8594;
+      <Link
+        to={hasNextPage ? `${base}/${nextPage}` : ''}
+        disabled={!hasNextPage}
+        title="Next page"
+      >
+        <span className="word">Next</span> &#8594;
       </Link>
     </PaginationStyles>
   );

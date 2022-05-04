@@ -30,8 +30,7 @@ const OrderStyles = styled.form`
       display: none;
     }
   }
-  /* @media (max-width: 900px) { */
-  @media (max-width: 500px) {
+  @media (max-width: 900px) {
     fieldset.menu,
     fieldset.order {
       grid-column: span 2;
