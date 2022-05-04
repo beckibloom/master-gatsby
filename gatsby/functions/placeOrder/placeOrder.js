@@ -26,14 +26,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-function wait(ms = 0) {
-  return new Promise((resolve, reject) => {
-    setTimeout(resolve, ms);
-  });
-}
-
 exports.handler = async (event, context) => {
-  await wait(1000);
   const body = JSON.parse(event.body);
   // check if they have filled out the honeypot
   if (body.catnip) {
