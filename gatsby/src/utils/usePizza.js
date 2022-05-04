@@ -44,6 +44,7 @@ export default function usePizza({ pizzas, values }) {
       catnip: values.catnip,
     };
     // 4 send this data to a serverless function when they check out
+    // This is not working
     const res = await fetch(
       `${process.env.GATSBY_SERVERLESS_BASE}/placeOrder`,
       {
@@ -64,6 +65,7 @@ export default function usePizza({ pizzas, values }) {
       // it worked!
       setLoading(false);
       setMessage('Success! Come on down for your pizza.');
+      setOrder([]);
     }
   }
 
